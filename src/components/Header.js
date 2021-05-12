@@ -1,7 +1,7 @@
 export default function Header() {
     return (
         <header>
-            Cineflex
+            CINEFLEX
         </header>
     )
 }

@@ -11,4 +11,7 @@ header {
     left: 0;
     width: 100vw;
     height: 67px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
