@@ -1,15 +1,17 @@
 import { useParams } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import axios from 'axios';
+import Footer from './Footer'
 
 export default function SelectTime() {
     const {idMovie} = useParams()
+    const [movies, setMovies] = useState([]); 
     const [dates, setDates] = useState([]);
 
     useEffect( () => {
         const request = axios.get(`https://mock-api.bootcamp.respondeai.com.br/api/v2/cineflex/movies/${idMovie}/showtimes`);
 
-        request.then( response => {setDates(response.data.days)});
+        request.then( response => {setDates(response.data.days); setMovies(response.data)});
 
     },[])
 
@@ -29,9 +31,7 @@ export default function SelectTime() {
                     )} 
                 </ul>
             </div>
-            <footer>
-
-            </footer>
+            <Footer name={movies.title} posterURL={movies.posterURL}/>
         </>
     )
 }
