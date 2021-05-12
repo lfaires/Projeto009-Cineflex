@@ -1,6 +1,7 @@
 import { BrowserRouter, Switch, Route } from "react-router-dom";
 import Header from "./Header"
 import Movies from "./Movies"
+import SelectTime from "./SelectTime"
 
 export default function App(){
     return (
@@ -11,10 +12,10 @@ export default function App(){
                 <Route path="/" exact>
                     <Movies />
                 </Route>
-                {/*<Route path="/movie/:idMovie" exact>
+                <Route path="/movie/:idMovie" exact>
                     <SelectTime />
                 </Route>
-                <Route path="/movietime/:idTime" exact>
+                {/*<Route path="/movietime/:idTime" exact>
                     <SelectSeat />
                 </Route>
                 <Route path="/congrats" exact>

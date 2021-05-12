@@ -10,7 +10,7 @@ export default function Movies(){
         request.then( response => {setMovies(response.data)});
 
     },[])
-       console.log("lista de filmes:",movies)
+
     return (
         <div className="container">
             <h2>Selecione o filme</h2>
