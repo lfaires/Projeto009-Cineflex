@@ -16,13 +16,28 @@ export default function SelectSeats() {
         request.then( response => {setInfos(response.data); setMovie(response.data.movie); setSeats(response.data.seats); setDay(response.data.day) });
 
         },[])
-        console.log("assentos:",seats)
+
+        function toggleSeat(seatChoosenId, seatAvailable){
+            if (seatAvailable === false){
+                alert("Esse assento não está disponível")
+                return;
+            }
+            const newSeat = seats.map( (seat) =>{
+                if (seat.id === seatChoosenId){
+                    seat.selected = !seat.selected;
+                }
+                return seat
+            });
+            setSeats(newSeat)
+            console.log(newSeat)
+        }
+
     return(
         <>
         <div className="container">
             <h2>Selecione o(s) assento(s)</h2>
             <ul className="seats">
-                {seats.map( (seat) => <li key={seat.id} className={seat.isAvailable ? "" : "not-available"}>{seat.name}</li>)}
+                {seats.map( (seat) => <li key={seat.id} className={!seat.isAvailable ? "not-available" : (seat.selected ? "selected" : null)} onClick={() => toggleSeat(seat.id,seat.isAvailable)} >{seat.name}</li>)}
             </ul>
             <div className="seats-option">
                 <div>
