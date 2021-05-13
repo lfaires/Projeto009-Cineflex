@@ -19,7 +19,7 @@ header {
 
 .container {
     margin-top: 67px;
-    margin-bottom: 130  px;
+    margin-bottom: 130px;
 }
 
 .container h2 {
@@ -109,4 +109,115 @@ img {
     padding: 8px;
     width: 100%;
     height: 100%;
+}
+
+.seats {
+    display: flex;
+    justify-content: space-between;
+    color: #000;
+    font-size: 11px;
+    flex-wrap: wrap;
+    margin: 0 24px;
+    margin-top: -12px;
+    height: 205px;
+}
+
+.seats li {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    Background:#C3CFD9;
+    width: 26px;
+    height: 26px;
+    border-radius: 50%;
+    border: 1px solid #808F9D;
+}
+
+.seats li.selected {
+    background:#8DD7CF;
+    border: 1px solid #45BDB0;
+}
+
+.seats li.not-available {
+    background:#FBE192;
+    border: 1px solid #F7C52B;
+}
+
+.seats-option {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 76.3vw;
+    height: 54px;
+    margin: 0 auto;
+    margin-bottom: 42px;
+}
+
+.seats-option > div {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.ball {
+    Background:#C3CFD9;
+    width: 26px;
+    height: 26px;
+    border-radius: 50%;
+    margin-bottom: 5px;
+    border: 1px solid #808F9D;
+}
+
+.ball-title {
+    font-size: 13px;
+    color:#4E5A65;
+}
+
+.ball.selected {
+    background:#8DD7CF;
+    border: 1px solid #45BDB0;
+}
+
+.ball.not-available {
+    background:#FBE192;
+    border: 1px solid #F7C52B;
+}
+
+form {
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    width: 87.2vw;
+    height: 259px;
+    font-size: 18px;
+}
+
+form :last-child {
+    display: flex;
+    justify-content: center;
+}
+
+.personal-info {
+    color:#293845;
+}
+
+input {
+    width: 87.2vw;
+    height: 51px;
+    margin-bottom: 7px;
+}
+
+button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background:#E8833A;
+    color: #FFF;
+    font-size: 18px;
+    width: 60vw;
+    height: 42px;
+    border: 1px solid #D4D4D4;
+    border-radius: 3px;
+    margin-top: 50px;
 }

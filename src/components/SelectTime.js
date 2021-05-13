@@ -1,4 +1,4 @@
-import { useParams } from 'react-router-dom';
+import { useParams, Link } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 import Footer from './Footer'
@@ -25,13 +25,18 @@ export default function SelectTime() {
                         <h3>{date.weekday + " - " + date.date}</h3>
                         <div className="time">
                             {date.showtimes.map( showtime => 
-                                <div key={showtime.id}>{showtime.name}</div>)}
+                                <div key={showtime.id}>
+                                    <Link to={`/movietime/${showtime.id}`}>
+                                        {showtime.name}
+                                    </Link>
+                                </div>
+                                )}
                         </div>
                     </li>
                     )} 
                 </ul>
             </div>
-            <Footer name={movies.title} posterURL={movies.posterURL}/>
+            <Footer title={movies.title} posterURL={movies.posterURL}/>
         </>
     )
 }
