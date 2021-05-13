@@ -3,7 +3,8 @@ import { useParams } from 'react-router-dom';
 import axios from 'axios'
 
 
-export default function SelectSeats() {
+export default function SelectSeats(props) {
+    const {setSeatsChoosen} = props
     const {idTime} = useParams()
     const [infos, setInfos] = useState("")
     const [movie, setMovie] = useState("")
@@ -29,7 +30,7 @@ export default function SelectSeats() {
                 return seat
             });
             setSeats(newSeat)
-            console.log(newSeat)
+            setSeatsChoosen(newSeat.filter( item => item.selected === true))
         }
 
     return(

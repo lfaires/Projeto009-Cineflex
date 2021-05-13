@@ -1,10 +1,13 @@
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
+import { useState } from 'react'
 import Header from './Header'
 import Movies from './Movies'
 import SelectTime from './SelectTime'
 import SelectSeats from './SelectSeats'
 
 export default function App(){
+    const [seatsChoosen, setSeatsChoosen] = useState({})
+    console.log(seatsChoosen)
     return (
         <>
         <Header />
@@ -17,7 +20,7 @@ export default function App(){
                     <SelectTime />
                 </Route>
                 <Route path="/movietime/:idTime" >
-                    <SelectSeats />
+                    <SelectSeats setSeatsChoosen={setSeatsChoosen} />
                 </Route>
                 {/*<Route path="/congrats" exact>
                     <Tickets />
