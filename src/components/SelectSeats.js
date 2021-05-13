@@ -7,7 +7,7 @@ export default function SelectSeats() {
     const {idTime} = useParams()
     const [infos, setInfos] = useState("")
     const [movie, setMovie] = useState("")
-    const [seats, setSeats] = useState("")
+    const [seats, setSeats] = useState([])
     const [day, setDay] = useState("")
 
     useEffect( () => {
@@ -16,12 +16,13 @@ export default function SelectSeats() {
         request.then( response => {setInfos(response.data); setMovie(response.data.movie); setSeats(response.data.seats); setDay(response.data.day) });
 
         },[])
-
+        console.log("assentos:",seats)
     return(
         <>
         <div className="container">
             <h2>Selecione o(s) assento(s)</h2>
             <ul className="seats">
+                {seats.map( (seat) => <li key={seat.id} className={seat.isAvailable ? "" : "not-available"}>{seat.name}</li>)}
             </ul>
             <div className="seats-option">
                 <div>
