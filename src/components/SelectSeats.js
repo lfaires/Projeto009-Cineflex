@@ -9,6 +9,7 @@ export default function SelectSeats(props) {
     const [infos, setInfos] = useState("")
     const [movie, setMovie] = useState("")
     const [seats, setSeats] = useState([])
+    const [seatsId, setSeatsId] = useState([])
     const [day, setDay] = useState("") 
     const [name, setName] = useState("");
     const [cpf, setCpf] = useState("");
@@ -32,6 +33,7 @@ export default function SelectSeats(props) {
                 return seat
             });
             setSeats(newSeat)
+            setSeatsId(newSeat.filter( item => item.selected === true).map( item => item.id))
             setSeatsChoosen(newSeat.filter( item => item.selected === true))
         }
         
@@ -41,6 +43,7 @@ export default function SelectSeats(props) {
                 setBuyerCpf(cpf)
                 const movieInfos = {title: movie.title, date: day.date, time: infos.name}    
                 setMovieChoosen(movieInfos)
+                sendBuyerData()
             } else {
                 alert("Insira valores válidos")
             }
@@ -52,6 +55,18 @@ export default function SelectSeats(props) {
 
         function isNameValid() {
             return (name !== "" || name === isNaN)
+        }
+
+        function sendBuyerData() {
+            const buyerdata = {
+                ids: seatsId,
+                name: name,
+                cpf: cpf
+            }
+            console.log(buyerdata)
+            const promise = axios.post("https://mock-api.bootcamp.respondeai.com.br/api/v2/cineflex/seats/book-many", buyerdata)
+
+            promise.then( response => console.log(response))
         }
 
     return(
