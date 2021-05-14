@@ -4,14 +4,14 @@ import axios from 'axios'
 
 
 export default function SelectSeats(props) {
-    const {setSeatsChoosen, setMovieChoosen, setName, setCpf} = props
+    const {setSeatsChoosen, setMovieChoosen, setBuyerName, setBuyerCpf} = props
     const {idTime} = useParams()
     const [infos, setInfos] = useState("")
     const [movie, setMovie] = useState("")
     const [seats, setSeats] = useState([])
     const [day, setDay] = useState("") 
-    const [nameBuyer, setNameBuyer] = useState("");
-    const [cpfBuyer, setCpfBuyer] = useState("");
+    const [name, setName] = useState("");
+    const [cpf, setCpf] = useState("");
 
     useEffect( () => {
         const request = axios.get(`https://mock-api.bootcamp.respondeai.com.br/api/v2/cineflex/showtimes/${idTime}/seats`);
@@ -34,26 +34,24 @@ export default function SelectSeats(props) {
             setSeats(newSeat)
             setSeatsChoosen(newSeat.filter( item => item.selected === true))
         }
-
-        
         
         function saveInfos() {
-            {/*if (nameBuyer !== "" || nameBuyer === isNaN){
-                setName(nameBuyer)
+            if (isNameValid() && isCpfValid()){
+                setBuyerName(name)
+                setBuyerCpf(cpf)
+                const movieInfos = {title: movie.title, date: day.date, time: infos.name}    
+                setMovieChoosen(movieInfos)
             } else {
-                alert("Insira um nome válido")
-                return
+                alert("Insira valores válidos")
             }
-            if (cpfBuyer !== isNaN && cpfBuyer.length === 11){
-                setCpf(cpfBuyer)
-                const filme = {title: movie.title, weekday: day.weekday, time: infos.name}    
-                setMovieChoosen(filme)
-            } else {
-                alert("Insira um número válido para o CPF")
-                return
-            }*/}
-            const movieInfos = {title: movie.title, date: day.date, time: infos.name}    
-            setMovieChoosen(movieInfos)
+        }
+
+        function isCpfValid(){
+            return (cpf !== "" && (cpf !== isNaN && cpf.length === 11))
+        }
+
+        function isNameValid() {
+            return (name !== "" || name === isNaN)
         }
 
     return(
@@ -79,9 +77,9 @@ export default function SelectSeats(props) {
             </div>
             <form>
                 <div className="personal-info"> Nome do comprador:</div>
-                <input type="text" placeholder="Digite seu nome..." onChange={(e) => setNameBuyer(e.target.value)} value={nameBuyer} ></input>
+                <input type="text" placeholder="Digite seu nome..." onChange={(e) => setName(e.target.value)} value={name} ></input>
                 <div className="personal-info">CPF do comprador:</div>
-                <input type="text" placeholder="Digite seu CPF..." onChange={(e) => setCpfBuyer(e.target.value)} value={cpfBuyer}></input>
+                <input type="text" placeholder="Digite seu CPF..." onChange={(e) => setCpf(e.target.value)} value={cpf}></input>
                 <div>
                     <Link to="/ordercompleted">
                     <button onClick={saveInfos}>Reservar assento(s)</button>

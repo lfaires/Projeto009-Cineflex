@@ -11,8 +11,6 @@ export default function App(){
     const [movieChoosen, setMovieChoosen] = useState([])
     const [buyerName, setBuyerName] = useState("")
     const [buyerCpf, setBuyerCpf] = useState("")
-    const [buyerInfos, setBuyerInfos] = useState([])
-    console.log(buyerInfos)
     
     return (
         <>
@@ -26,10 +24,10 @@ export default function App(){
                     <SelectTime />
                 </Route>
                 <Route path="/movietime/:idTime" >
-                    <SelectSeats setMovieChoosen={setMovieChoosen} setSeatsChoosen={setSeatsChoosen} setName={setBuyerName} setCpf={setBuyerCpf}/>
+                    <SelectSeats setMovieChoosen={setMovieChoosen} setSeatsChoosen={setSeatsChoosen} setBuyerName={setBuyerName} setBuyerCpf={setBuyerCpf}/>
                 </Route>
                 <Route path="/ordercompleted" exact>
-                    <OrderDetails seats={seatsChoosen} movie={movieChoosen} />
+                    <OrderDetails seats={seatsChoosen} movie={movieChoosen} name={buyerName} cpf={buyerCpf}/>
                 </Route>
             </Switch>
         </BrowserRouter>

@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import { Link } from 'react-router-dom'
 
 export default function OrderDetails(props) {
-    const {seats, movie} = props
+    const {seats, movie, name, cpf} = props
 
     return (
         <div className="container">
@@ -18,8 +18,8 @@ export default function OrderDetails(props) {
                 </Details>
                 <Subheading>Comprador</Subheading>
                 <Details>
-                    <Detail>Nome: Luiz Fernando Moda Aires</Detail>
-                    <Detail>CPF: 222.000.333-14</Detail>
+                    <Detail>{"Nome: " + name}</Detail>
+                    <Detail>{"CPF: " + cpf}</Detail>
                 </Details>
                 <Link to="/">
                     <Button>Voltar para Home</Button>
