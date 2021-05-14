@@ -2,16 +2,16 @@ import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
 export default function BuyerData(props) {
-    const { setName, name, setCpf, cpf , saveData} = props
+    const { setName, name, setCpf, cpf , saveData, valid, idTime} = props
     
     return (
         <Form>
-            <Title> Nome do comprador:</Title>
+            <Title>Nome do comprador:</Title>
             <input type="text" placeholder="Digite seu nome..." onChange={(e) => setName(e.target.value)} value={name} ></input>
-            <Title className="personal-info">CPF do comprador:</Title>
+            <Title>CPF do comprador:</Title>
             <input type="text" placeholder="Digite seu CPF..." onChange={(e) => setCpf(e.target.value)} value={cpf}></input>
             <div>
-                <Link onClick={saveData} className="button-link" to="/ordercompleted">
+                <Link onClick={saveData} className="button-link" to={valid ? "/sucesso" : `/assentos/${idTime}`}>
                     Reservar assento(s)
                 </Link>
             </div>

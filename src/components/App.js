@@ -1,10 +1,10 @@
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import { useState } from 'react'
 import Header from './Header'
-import Movies from './Movies'
-import SelectTime from './SelectTime'
-import SelectSeats from './SelectSeats'
-import OrderDetails from './OrderDetails'
+import Movies from './Movies/Movies'
+import SelectTime from './SelectTime/SelectTime'
+import SelectSeats from './SelectSeats/SelectSeats'
+import OrderDetails from './OrderDetails/OrderDetails'
 
 export default function App(){
     const [seatsChoosen, setSeatsChoosen] = useState([])
@@ -15,6 +15,11 @@ export default function App(){
     const [location, setLocation] = useState({})
     const [url, setUrl] = useState("")
 
+    function resetData() {
+        setSeatsChoosen([]); setMovieChoosen([]); setBuyerName(""); setBuyerCpf("")
+        setIsHomePage(true); setLocation({}); setUrl("")
+    }
+
     return (
         <>
         <Header home={isHomePage} goBack={location} url={url}/>
@@ -23,14 +28,14 @@ export default function App(){
                 <Route path="/" exact>
                     <Movies setHome={setIsHomePage} />
                 </Route>
-                <Route path="/movie/:idMovie" exact>
+                <Route path="/sessoes/:idMovie" exact>
                     <SelectTime setHome={setIsHomePage} setLocation={setLocation} setUrl={setUrl}/>
                 </Route>
-                <Route path="/movietime/:idTime" >
-                    <SelectSeats setMovieChoosen={setMovieChoosen} setSeatsChoosen={setSeatsChoosen} setBuyerName={setBuyerName} setBuyerCpf={setBuyerCpf} setHome={setIsHomePage} setLocation={setLocation} setUrl={setUrl}/>
+                <Route path="/assentos/:idTime" >
+                    <SelectSeats setMovieChoosen={setMovieChoosen} setSeatsChoosen={setSeatsChoosen} setBuyerName={setBuyerName} setBuyerCpf={setBuyerCpf} setHome={setIsHomePage} setLocation={setLocation} setUrl={setUrl} seatsChoosen={seatsChoosen}/>
                 </Route>
-                <Route path="/ordercompleted" exact>
-                    <OrderDetails seats={seatsChoosen} movie={movieChoosen} name={buyerName} cpf={buyerCpf} setHome={setIsHomePage}/>
+                <Route path="/sucesso" exact>
+                    <OrderDetails seats={seatsChoosen} movie={movieChoosen} name={buyerName} cpf={buyerCpf} setHome={setIsHomePage} resetData={resetData}/>
                 </Route>
             </Switch>
         </BrowserRouter>
