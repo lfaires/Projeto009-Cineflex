@@ -10,7 +10,8 @@ export default function SelectTime(props) {
     const [movies, setMovies] = useState([]); 
     const [dates, setDates] = useState([]);
     setHome(false);
-    setLocation(useHistory());
+    let history = useHistory()
+    setLocation(history);
     setUrl("/")
 
     useEffect( () => {

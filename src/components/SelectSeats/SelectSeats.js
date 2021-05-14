@@ -20,7 +20,8 @@ export default function SelectSeats(props) {
     const [isValid, setIsValid] = useState(false)
 
     setHome(false)
-    setLocation(useHistory());
+    let history = useHistory()
+    setLocation(history);
     setUrl(`/sessoes/${movie.id}`)
 
     useEffect( () => {
@@ -40,12 +41,12 @@ export default function SelectSeats(props) {
                 setIsValid(true)
             } else {
                 setIsValid(false)
-                alert("Você está inserindo valores inválidos, você não escolheu um assento ou não há assentos disoníveis!")
+                alert("Você está inserindo valores inválidos, ou você não escolheu um assento ou não há assentos disponíveis!")
             }
         }
         
         function choosenSeats() {
-            return (seatsChoosen.length === 0)
+            return (seatsChoosen.length !== 0)
         }
 
         function hasAvailableSeat() {
