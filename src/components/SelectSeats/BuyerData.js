@@ -11,8 +11,8 @@ export default function BuyerData(props) {
             <Title className="personal-info">CPF do comprador:</Title>
             <input type="text" placeholder="Digite seu CPF..." onChange={(e) => setCpf(e.target.value)} value={cpf}></input>
             <div>
-                <Link to="/ordercompleted">
-                <button onClick={saveData}>Reservar assento(s)</button>
+                <Link onClick={saveData} className="button-link" to="/ordercompleted">
+                    Reservar assento(s)
                 </Link>
             </div>
         </Form>

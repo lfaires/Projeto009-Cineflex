@@ -23,17 +23,22 @@ export default function OrderDetails(props) {
                     <Detail>{"Nome: " + name}</Detail>
                     <Detail>{"CPF: " + newCpf}</Detail>
                 </Details>
-                <Link to="/">
-                    <Button>Voltar para Home</Button>
-                </Link>
+                <div>
+                    <Link className="button-link" to="/">Voltar para Home</Link>     
+                </div>
         </Container>
     )
 }
 
 const Container = styled.div`
     margin: 67px 24px 130px 24px;
-`
 
+    & :nth-child(8) {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+`
 const Heading = styled.div`
     width: 100%;
     height: 110px;
@@ -57,17 +62,4 @@ const Details = styled.div`
 const Detail = styled.div`
     font-size: 22px;
     color: #293845;
-`
-const Button = styled.div`
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background:#E8833A;
-    color: #FFF;
-    font-size: 18px;
-    width: 60vw;
-    height: 42px;
-    border: 1px solid #D4D4D4;
-    border-radius: 3px;
-    margin-top: 65px;
 `
