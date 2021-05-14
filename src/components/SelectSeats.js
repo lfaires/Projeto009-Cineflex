@@ -1,8 +1,9 @@
+import axios from 'axios'
+import styled from 'styled-components';
 import { useState, useEffect } from 'react'
 import { useParams, Link } from 'react-router-dom';
-import axios from 'axios'
 import Footer from './Footer'
-
+import AllSeats from './SelectSeats/AllSeats';
 
 export default function SelectSeats(props) {
     const {setSeatsChoosen, setMovieChoosen, setBuyerName, setBuyerCpf} = props
@@ -22,22 +23,7 @@ export default function SelectSeats(props) {
 
         },[])
 
-        function toggleSeat(seatChoosenId, seatAvailable){
-            if (seatAvailable === false){
-                alert("Esse assento não está disponível")
-                return;
-            }
-            const newSeat = seats.map( (seat) =>{
-                if (seat.id === seatChoosenId){
-                    seat.selected = !seat.selected;
-                }
-                return seat
-            });
-            setSeats(newSeat)
-            setSeatsId(newSeat.filter( item => item.selected === true).map( item => item.id))
-            setSeatsChoosen(newSeat.filter( item => item.selected === true))
-        }
-        
+              
         function saveInfos() {
             if (isNameValid() && isCpfValid()){
                 setBuyerName(name)
@@ -74,9 +60,7 @@ export default function SelectSeats(props) {
         <>
         <div className="container">
             <h2>Selecione o(s) assento(s)</h2>
-            <ul className="seats">
-                {seats.map( (seat) => <li key={seat.id} className={!seat.isAvailable ? "not-available" : (seat.selected ? "selected" : null)} onClick={() => toggleSeat(seat.id,seat.isAvailable)} >{seat.name}</li>)}
-            </ul>
+            <AllSeats seats={seats} setSeatsId={setSeatsId} setSeatsChoosen={setSeatsChoosen} setSeats={setSeats}></AllSeats>
             <div className="seats-option">
                 <div>
                     <div className="ball selected"></div>
