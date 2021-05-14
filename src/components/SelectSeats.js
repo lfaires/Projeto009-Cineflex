@@ -1,4 +1,5 @@
 import axios from 'axios'
+import styled from 'styled-components';
 import { useState, useEffect } from 'react'
 import { useParams, useHistory} from 'react-router-dom';
 import Footer from './Footer'
@@ -61,13 +62,37 @@ export default function SelectSeats(props) {
 
     return(
         <>
-        <div className="container">
+        <Container>
             <h2>Selecione o(s) assento(s)</h2>
             <AllSeats seats={seats} setSeatsId={setSeatsId} setSeatsChoosen={setSeatsChoosen} setSeats={setSeats}></AllSeats>
             <SeatsCategories></SeatsCategories>
             <BuyerData setName={setName} name={name} setCpf={setCpf} saveData={saveInfos}></BuyerData>
-        </div>
+        </Container>
         <Footer title={movie.title} posterURL={movie.posterURL} weekday={day.weekday} time={infos.name}/>
         </>
     )
 }
+
+const Container = styled.div`
+    margin: 67px 24px 130px 24px;
+
+    h2 {
+        width: 100%;
+        height: 110px;
+        font-size: 24px;
+        color:#293845;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+    }
+
+    h3 {
+        display: flex;
+        align-items: center;
+        width: 100%;
+        height: 35px;
+        font-size: 24px;
+        color:#293845;
+    }
+`

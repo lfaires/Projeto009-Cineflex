@@ -2,8 +2,6 @@ import styled from 'styled-components';
 
 export default function Header(props) {
     const { home, goBack, url } = props
-   
-    console.log(home)
 
     function backPage() {
         goBack.push(url)

@@ -7,7 +7,7 @@ export default function OrderDetails(props) {
     setHome(true)
 
     return (
-        <div className="container">
+        <Container>
             <Heading>Pedido feito <br/>com sucesso!</Heading>
                 <Subheading>Filmes e sessão</Subheading>
                 <Details>
@@ -26,9 +26,13 @@ export default function OrderDetails(props) {
                 <Link to="/">
                     <Button>Voltar para Home</Button>
                 </Link>
-        </div>
+        </Container>
     )
 }
+
+const Container = styled.div`
+    margin: 67px 24px 130px 24px;
+`
 
 const Heading = styled.div`
     width: 100%;

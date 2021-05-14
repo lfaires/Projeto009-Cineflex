@@ -22,7 +22,7 @@ export default function SelectTime(props) {
 
     return (
         <>
-        <div className="container">
+        <Container>
             <h2>Selecione o horário</h2>
             <TimeTable>
             { dates.map( date => 
@@ -38,11 +38,35 @@ export default function SelectTime(props) {
                     </Time>
                 </li>)} 
             </TimeTable>
-        </div>
+        </Container>
         <Footer title={movies.title} posterURL={movies.posterURL} weekday={null} time={null}/>
         </>
     )
 }
+
+const Container = styled.div`
+    margin: 67px 24px 130px 24px;
+
+    h2 {
+        width: 100%;
+        height: 110px;
+        font-size: 24px;
+        color:#293845;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+    }
+
+    h3 {
+        display: flex;
+        align-items: center;
+        width: 100%;
+        height: 35px;
+        font-size: 24px;
+        color:#293845;
+    }
+`
 
 const TimeTable = styled.ul``
 

@@ -15,7 +15,7 @@ export default function Movies(props){
     },[])
     
     return (
-        <div className="container">
+        <Container>
             <h2>Selecione o filme</h2>
             <ListOfMovies>
                { movies.map( movie => 
@@ -25,10 +25,33 @@ export default function Movies(props){
                     </Link>
                 </li>)} 
             </ListOfMovies>
-        </div>
+        </Container>
     )
 }
 
+const Container = styled.div`
+    margin: 67px 24px 130px 24px;
+
+    h2 {
+        width: 100%;
+        height: 110px;
+        font-size: 24px;
+        color:#293845;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+    }
+
+    h3 {
+        display: flex;
+        align-items: center;
+        width: 100%;
+        height: 35px;
+        font-size: 24px;
+        color:#293845;
+    }
+`
 const ListOfMovies = styled.ul`
     display: flex;
     flex-wrap: wrap;
