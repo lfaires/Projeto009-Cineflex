@@ -3,9 +3,10 @@ import styled from 'styled-components';
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom'
 
-export default function Movies(){
+export default function Movies(props){
+    const { setHome } = props
     const [movies, setMovies] = useState([]);    
-    
+    setHome(true);
     useEffect( () => {
         const request = axios.get("https://mock-api.bootcamp.respondeai.com.br/api/v2/cineflex/movies");
 

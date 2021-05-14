@@ -1,13 +1,17 @@
 import axios from 'axios';
 import styled from 'styled-components';
-import { useParams, Link } from 'react-router-dom';
+import { useParams, Link, useHistory } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import Footer from './Footer'
 
-export default function SelectTime() {
+export default function SelectTime(props) {
+    const { setHome, setLocation, setUrl } = props;
     const {idMovie} = useParams()
     const [movies, setMovies] = useState([]); 
     const [dates, setDates] = useState([]);
+    setHome(false);
+    setLocation(useHistory());
+    setUrl("/")
 
     useEffect( () => {
         const request = axios.get(`https://mock-api.bootcamp.respondeai.com.br/api/v2/cineflex/movies/${idMovie}/showtimes`);

@@ -1,13 +1,13 @@
 import axios from 'axios'
 import { useState, useEffect } from 'react'
-import { useParams} from 'react-router-dom';
+import { useParams, useHistory} from 'react-router-dom';
 import Footer from './Footer'
 import AllSeats from './SelectSeats/AllSeats';
 import SeatsCategories from './SelectSeats/SeatsCategories';
 import BuyerData from './SelectSeats/BuyerData';
 
 export default function SelectSeats(props) {
-    const {setSeatsChoosen, setMovieChoosen, setBuyerName, setBuyerCpf} = props
+    const {setSeatsChoosen, setMovieChoosen, setBuyerName, setBuyerCpf, setHome, setLocation, setUrl} = props
     const {idTime} = useParams()
     const [infos, setInfos] = useState("")
     const [movie, setMovie] = useState("")
@@ -16,6 +16,9 @@ export default function SelectSeats(props) {
     const [day, setDay] = useState("") 
     const [name, setName] = useState("");
     const [cpf, setCpf] = useState("");
+    setHome(false)
+    setLocation(useHistory());
+    setUrl(`/movie/${movie.id}`)
 
     useEffect( () => {
         const request = axios.get(`https://mock-api.bootcamp.respondeai.com.br/api/v2/cineflex/showtimes/${idTime}/seats`);

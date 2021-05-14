@@ -39,5 +39,4 @@ const Footers = styled.footer`
         color:#293845;
         font-size: 26px;
     }
-
 `

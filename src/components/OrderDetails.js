@@ -2,7 +2,8 @@ import styled from 'styled-components';
 import { Link } from 'react-router-dom'
 
 export default function OrderDetails(props) {
-    const {seats, movie, name, cpf} = props
+    const {seats, movie, name, cpf, setHome} = props
+    setHome(true)
 
     return (
         <div className="container">

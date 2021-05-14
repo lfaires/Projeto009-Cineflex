@@ -11,23 +11,26 @@ export default function App(){
     const [movieChoosen, setMovieChoosen] = useState([])
     const [buyerName, setBuyerName] = useState("")
     const [buyerCpf, setBuyerCpf] = useState("")
-    
+    const [isHomePage, setIsHomePage] = useState(true)
+    const [location, setLocation] = useState({})
+    const [url, setUrl] = useState("")
+
     return (
         <>
-        <Header />
+        <Header home={isHomePage} goBack={location} url={url}/>
         <BrowserRouter>
             <Switch>
                 <Route path="/" exact>
-                    <Movies />
+                    <Movies setHome={setIsHomePage} />
                 </Route>
                 <Route path="/movie/:idMovie" exact>
-                    <SelectTime />
+                    <SelectTime setHome={setIsHomePage} setLocation={setLocation} setUrl={setUrl}/>
                 </Route>
                 <Route path="/movietime/:idTime" >
-                    <SelectSeats setMovieChoosen={setMovieChoosen} setSeatsChoosen={setSeatsChoosen} setBuyerName={setBuyerName} setBuyerCpf={setBuyerCpf}/>
+                    <SelectSeats setMovieChoosen={setMovieChoosen} setSeatsChoosen={setSeatsChoosen} setBuyerName={setBuyerName} setBuyerCpf={setBuyerCpf} setHome={setIsHomePage} setLocation={setLocation} setUrl={setUrl}/>
                 </Route>
                 <Route path="/ordercompleted" exact>
-                    <OrderDetails seats={seatsChoosen} movie={movieChoosen} name={buyerName} cpf={buyerCpf}/>
+                    <OrderDetails seats={seatsChoosen} movie={movieChoosen} name={buyerName} cpf={buyerCpf} setHome={setIsHomePage}/>
                 </Route>
             </Switch>
         </BrowserRouter>
