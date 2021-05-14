@@ -1,10 +1,10 @@
 import axios from 'axios'
-import styled from 'styled-components';
 import { useState, useEffect } from 'react'
-import { useParams, Link } from 'react-router-dom';
+import { useParams} from 'react-router-dom';
 import Footer from './Footer'
 import AllSeats from './SelectSeats/AllSeats';
 import SeatsCategories from './SelectSeats/SeatsCategories';
+import BuyerData from './SelectSeats/BuyerData';
 
 export default function SelectSeats(props) {
     const {setSeatsChoosen, setMovieChoosen, setBuyerName, setBuyerCpf} = props
@@ -23,8 +23,7 @@ export default function SelectSeats(props) {
         request.then( response => {setInfos(response.data); setMovie(response.data.movie); setSeats(response.data.seats); setDay(response.data.day) });
 
         },[])
-
-              
+  
         function saveInfos() {
             if (isNameValid() && isCpfValid()){
                 setBuyerName(name)
@@ -51,7 +50,7 @@ export default function SelectSeats(props) {
                 name: name,
                 cpf: cpf
             }
-            console.log(buyerdata)
+
             const promise = axios.post("https://mock-api.bootcamp.respondeai.com.br/api/v2/cineflex/seats/book-many", buyerdata)
 
             promise.then( response => console.log(response))
@@ -63,17 +62,7 @@ export default function SelectSeats(props) {
             <h2>Selecione o(s) assento(s)</h2>
             <AllSeats seats={seats} setSeatsId={setSeatsId} setSeatsChoosen={setSeatsChoosen} setSeats={setSeats}></AllSeats>
             <SeatsCategories></SeatsCategories>
-            <form>
-                <div className="personal-info"> Nome do comprador:</div>
-                <input type="text" placeholder="Digite seu nome..." onChange={(e) => setName(e.target.value)} value={name} ></input>
-                <div className="personal-info">CPF do comprador:</div>
-                <input type="text" placeholder="Digite seu CPF..." onChange={(e) => setCpf(e.target.value)} value={cpf}></input>
-                <div>
-                    <Link to="/ordercompleted">
-                    <button onClick={saveInfos}>Reservar assento(s)</button>
-                    </Link>
-                </div>
-            </form>
+            <BuyerData setName={setName} name={name} setCpf={setCpf} saveData={saveInfos}></BuyerData>
         </div>
         <Footer title={movie.title} posterURL={movie.posterURL} weekday={day.weekday} time={infos.name}/>
         </>

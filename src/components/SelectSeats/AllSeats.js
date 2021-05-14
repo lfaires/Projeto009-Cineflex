@@ -20,9 +20,12 @@ export default function AllSeats(props) {
     }
 
     return (
-        <ul className="seats">
-            {seats.map( (seat) => <li key={seat.id} className={!seat.isAvailable ? "not-available" : (seat.selected ? "selected" : null)} onClick={() => toggleSeat(seat.id,seat.isAvailable)} >{seat.name}</li>)}
-        </ul>
+        <Seats>
+            {seats.map( (seat) => 
+                <Seat key={seat.id} selected={!seat.isAvailable ? "not-available" : (seat.selected ? "selected" : null)} onClick={() => toggleSeat(seat.id,seat.isAvailable)} >
+                    {seat.name}
+                </Seat>)}
+        </Seats>
     )
 }
 
@@ -37,16 +40,15 @@ const Seats = styled.ul`
     height: 202px;
     width: 100%;
     margin-bottom: 16px;
-
-    li {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        flex: 0 0 9.1%;
-        background:#C3CFD9;
-        width: 26px;
-        height: 26px;
-        border-radius: 50%;
-        border: 1px solid #808F9D;
-    }
+`
+const Seat = styled.li`
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex: 0 0 9.1%;
+    background:${props => props.selected === null ? "#C3CFD9" : (props.selected === "selected" ? "#8DD7CF" : "#FBE192")};
+    width: 26px;
+    height: 26px;
+    border-radius: 50%;
+    border: 1px solid ${props => props.selected === null ? "#808F9D" : (props.selected === "selected" ? "#45BDB0" : "#F7C52B")};
 `
