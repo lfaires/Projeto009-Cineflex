@@ -9,10 +9,10 @@ import OrderDetails from './OrderDetails'
 export default function App(){
     const [seatsChoosen, setSeatsChoosen] = useState([])
     const [movieChoosen, setMovieChoosen] = useState([])
-    const [name, setName] = useState("")
-    const [cpf, setCpf] = useState("")
-    const buyerInfos = {name: name, cpf: cpf}
-    console.log(movieChoosen)
+    const [buyerName, setBuyerName] = useState("")
+    const [buyerCpf, setBuyerCpf] = useState("")
+    const [buyerInfos, setBuyerInfos] = useState([])
+    console.log(buyerInfos)
     
     return (
         <>
@@ -26,7 +26,7 @@ export default function App(){
                     <SelectTime />
                 </Route>
                 <Route path="/movietime/:idTime" >
-                    <SelectSeats setMovieChoosen={setMovieChoosen} setSeatsChoosen={setSeatsChoosen} setName={setName} setCpf={setCpf}/>
+                    <SelectSeats setMovieChoosen={setMovieChoosen} setSeatsChoosen={setSeatsChoosen} setName={setBuyerName} setCpf={setBuyerCpf}/>
                 </Route>
                 <Route path="/ordercompleted" exact>
                     <OrderDetails seats={seatsChoosen} movie={movieChoosen} />
