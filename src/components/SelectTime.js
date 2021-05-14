@@ -15,6 +15,8 @@ export default function SelectTime() {
 
     },[])
 
+   
+
     return (
         <>
             <div className="container">
@@ -27,7 +29,7 @@ export default function SelectTime() {
                             {date.showtimes.map( showtime => 
                                 <div key={showtime.id}>
                                     <Link to={`/movietime/${showtime.id}`}>
-                                        {showtime.name}
+                                        <span>{showtime.name}</span>
                                     </Link>
                                 </div>
                                 )}

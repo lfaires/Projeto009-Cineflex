@@ -1,10 +1,10 @@
 import { useState, useEffect } from 'react'
-import { useParams } from 'react-router-dom';
+import { useParams, Link } from 'react-router-dom';
 import axios from 'axios'
 
 
 export default function SelectSeats(props) {
-    const {setSeatsChoosen, setName, setCpf} = props
+    const {setSeatsChoosen, setMovieChoosen, setName, setCpf} = props
     const {idTime} = useParams()
     const [infos, setInfos] = useState("")
     const [movie, setMovie] = useState("")
@@ -38,18 +38,22 @@ export default function SelectSeats(props) {
         
         
         function saveInfos() {
-            if (nameBuyer !== "" || nameBuyer === isNaN){
+            {/*if (nameBuyer !== "" || nameBuyer === isNaN){
                 setName(nameBuyer)
             } else {
                 alert("Insira um nome válido")
                 return
             }
-            if (cpfBuyer !== isNaN && cpfBuyer.length === 12){
+            if (cpfBuyer !== isNaN && cpfBuyer.length === 11){
                 setCpf(cpfBuyer)
+                const filme = {title: movie.title, weekday: day.weekday, time: infos.name}    
+                setMovieChoosen(filme)
             } else {
                 alert("Insira um número válido para o CPF")
                 return
-            }
+            }*/}
+            const movieInfos = {title: movie.title, date: day.date, time: infos.name}    
+            setMovieChoosen(movieInfos)
         }
 
     return(
@@ -79,7 +83,9 @@ export default function SelectSeats(props) {
                 <div className="personal-info">CPF do comprador:</div>
                 <input type="text" placeholder="Digite seu CPF..." onChange={(e) => setCpfBuyer(e.target.value)} value={cpfBuyer}></input>
                 <div>
+                    <Link to="/ordercompleted">
                     <button onClick={saveInfos}>Reservar assento(s)</button>
+                    </Link>
                 </div>
             </form>
         </div>
