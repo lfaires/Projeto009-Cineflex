@@ -43,7 +43,7 @@ const Seats = styled.ul`
         align-items: center;
         justify-content: center;
         flex: 0 0 9.1%;
-        Background:#C3CFD9;
+        background:#C3CFD9;
         width: 26px;
         height: 26px;
         border-radius: 50%;

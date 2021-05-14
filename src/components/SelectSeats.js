@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react'
 import { useParams, Link } from 'react-router-dom';
 import Footer from './Footer'
 import AllSeats from './SelectSeats/AllSeats';
+import SeatsCategories from './SelectSeats/SeatsCategories';
 
 export default function SelectSeats(props) {
     const {setSeatsChoosen, setMovieChoosen, setBuyerName, setBuyerCpf} = props
@@ -61,20 +62,7 @@ export default function SelectSeats(props) {
         <div className="container">
             <h2>Selecione o(s) assento(s)</h2>
             <AllSeats seats={seats} setSeatsId={setSeatsId} setSeatsChoosen={setSeatsChoosen} setSeats={setSeats}></AllSeats>
-            <div className="seats-option">
-                <div>
-                    <div className="ball selected"></div>
-                    <div className="ball-title">Selecionado</div>
-                </div>
-                <div>
-                    <div className="ball"></div>
-                    <div className="ball-title">Disponível</div>
-                </div>
-                <div>
-                    <div className="ball not-available"></div>
-                    <div className="ball-title">Indisponível</div>
-                </div>
-            </div>
+            <SeatsCategories></SeatsCategories>
             <form>
                 <div className="personal-info"> Nome do comprador:</div>
                 <input type="text" placeholder="Digite seu nome..." onChange={(e) => setName(e.target.value)} value={name} ></input>
