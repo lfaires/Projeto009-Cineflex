@@ -7,7 +7,10 @@ import SelectSeats from './SelectSeats'
 
 export default function App(){
     const [seatsChoosen, setSeatsChoosen] = useState({})
-    console.log(seatsChoosen)
+    const [name, setName] = useState("")
+    const [cpf, setCpf] = useState("")
+    const buyerInfos = {name: name, cpf: cpf}
+    
     return (
         <>
         <Header />
@@ -20,10 +23,10 @@ export default function App(){
                     <SelectTime />
                 </Route>
                 <Route path="/movietime/:idTime" >
-                    <SelectSeats setSeatsChoosen={setSeatsChoosen} />
+                    <SelectSeats setSeatsChoosen={setSeatsChoosen} setName={setName} setCpf={setCpf}/>
                 </Route>
-                {/*<Route path="/congrats" exact>
-                    <Tickets />
+                {/*<Route path="/ordercompleted" exact>
+                    <Tickets seatsChoosen={seatsChoosen} />
                 </Route>*/}
             </Switch>
         </BrowserRouter>

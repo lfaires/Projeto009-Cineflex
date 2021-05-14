@@ -4,12 +4,14 @@ import axios from 'axios'
 
 
 export default function SelectSeats(props) {
-    const {setSeatsChoosen} = props
+    const {setSeatsChoosen, setName, setCpf} = props
     const {idTime} = useParams()
     const [infos, setInfos] = useState("")
     const [movie, setMovie] = useState("")
     const [seats, setSeats] = useState([])
-    const [day, setDay] = useState("")
+    const [day, setDay] = useState("") 
+    const [nameBuyer, setNameBuyer] = useState("");
+    const [cpfBuyer, setCpfBuyer] = useState("");
 
     useEffect( () => {
         const request = axios.get(`https://mock-api.bootcamp.respondeai.com.br/api/v2/cineflex/showtimes/${idTime}/seats`);
@@ -31,6 +33,23 @@ export default function SelectSeats(props) {
             });
             setSeats(newSeat)
             setSeatsChoosen(newSeat.filter( item => item.selected === true))
+        }
+
+        
+        
+        function saveInfos() {
+            if (nameBuyer !== "" || nameBuyer === isNaN){
+                setName(nameBuyer)
+            } else {
+                alert("Insira um nome válido")
+                return
+            }
+            if (cpfBuyer !== isNaN && cpfBuyer.length === 12){
+                setCpf(cpfBuyer)
+            } else {
+                alert("Insira um número válido para o CPF")
+                return
+            }
         }
 
     return(
@@ -56,11 +75,11 @@ export default function SelectSeats(props) {
             </div>
             <form>
                 <div className="personal-info"> Nome do comprador:</div>
-                <input type="text" placeholder="Digite seu nome..." ></input>
+                <input type="text" placeholder="Digite seu nome..." onChange={(e) => setNameBuyer(e.target.value)} value={nameBuyer} ></input>
                 <div className="personal-info">CPF do comprador:</div>
-                <input type="text" placeholder="Digite seu CPF..."></input>
+                <input type="text" placeholder="Digite seu CPF..." onChange={(e) => setCpfBuyer(e.target.value)} value={cpfBuyer}></input>
                 <div>
-                    <button>Reservar assento(s)</button>
+                    <button onClick={saveInfos}>Reservar assento(s)</button>
                 </div>
             </form>
         </div>
