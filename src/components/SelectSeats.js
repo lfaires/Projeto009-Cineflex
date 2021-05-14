@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react'
 import { useParams, Link } from 'react-router-dom';
 import axios from 'axios'
+import Footer from './Footer'
 
 
 export default function SelectSeats(props) {
@@ -102,12 +103,7 @@ export default function SelectSeats(props) {
                 </div>
             </form>
         </div>
-        <footer>
-            <div>
-                <img src={movie.posterURL} alt={movie.title + " poster"}/>
-            </div>
-            <p>{movie.title} <br/> {day.weekday + " - " +infos.name}</p>
-        </footer>
+        <Footer title={movie.title} posterURL={movie.posterURL} weekday={day.weekday} time={infos.name}/>
         </>
     )
 }
